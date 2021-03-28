@@ -1,23 +1,5 @@
-name: Acquire license
-on: [push]
-jobs:
-  acquire:
-    name: Request ALF file for manual license
-    runs-on: ubuntu-latest
-    steps:
-    - name: Request manual activation file
-      id: getManualLicenseFile
-      uses: webbertakken/unity-request-manual-activation-file@v1.1
-      with:
-        # CHANGE: Add -windows, causes it to use the correct/same docker image as for build step
-        unityVersion: 2019.3.13f1-windows
-    - name: Expose as artifact
-      uses: actions/upload-artifact@v1
-      with:
-        # CHANGE: Use hard-coded filename because unity-request-manual-activation returns "Unity_v2019.2.2f1-windows.alf" as the output.
-        name: Unity_v2019.3.13f1.alf
-        path: Unity_v2019.3.13f1.alf
-   name: Build project
+
+name: Build project
 
 on: [push, pull_request]
 
