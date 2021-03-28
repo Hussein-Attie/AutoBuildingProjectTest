@@ -17,3 +17,32 @@ jobs:
         # CHANGE: Use hard-coded filename because unity-request-manual-activation returns "Unity_v2019.2.2f1-windows.alf" as the output.
         name: Unity_v2019.3.13f1.alf
         path: Unity_v2019.3.13f1.alf
+   name: Build project
+
+on: [push, pull_request]
+
+jobs:
+  buildForAllSupportedPlatforms:
+    name: Build for StandaloneWindows 
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          lfs: true
+      - uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-StandaloneWindows 
+          restore-keys: Library-
+      - uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          targetPlatform: StandaloneWindows 
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build-StandaloneWindows 
+          path: build/StandaloneWindows 
