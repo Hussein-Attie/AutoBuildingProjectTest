@@ -1,30 +1,20 @@
 
-name: Build project
-
-on: [push, pull_request]
-
+name: Acquire license
+on: [push]
 jobs:
-  buildForAllSupportedPlatforms:
-    name: Build for StandaloneWindows 
+  acquire:
+    name: Request ALF file for manual license
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          lfs: true
-      - uses: actions/cache@v2
-        with:
-          path: Library
-          key: Library-StandaloneWindows 
-          restore-keys: Library-
-      - uses: game-ci/unity-builder@v2
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-        with:
-          targetPlatform: StandaloneWindows 
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Build-StandaloneWindows 
-          path: build/StandaloneWindows 
+    - name: Request manual activation file
+      id: getManualLicenseFile
+      uses: webbertakken/unity-request-manual-activation-file@v1.1
+      with:
+        # CHANGE: Add -windows, causes it to use the correct/same docker image as for build step
+        unityVersion: 2019.3.9f1-windows
+    - name: Expose as artifact
+      uses: actions/upload-artifact@v1
+      with:
+        # CHANGE: Use hard-coded filename because unity-request-manual-activation returns "Unity_v2019.2.2f1-windows.alf" as the output.
+        name: Unity_v2019.3.9f1.alf
+        path: Unity_v2019.3.9f1.alf
