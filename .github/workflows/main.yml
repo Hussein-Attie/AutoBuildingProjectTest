@@ -9,21 +9,21 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.0-aplha-5
         with:
           fetch-depth: 0
           lfs: true
-      - uses: actions/cache@v2
+      - uses: actions/cache@v2.0-aplha-5
         with:
           path: Library
           key: Library-StandaloneWindows 
           restore-keys: Library-
-      - uses: game-ci/unity-builder@v2
+      - uses:  game-ci/unity-builder@v2.0-aplha-5
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: StandaloneWindows 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v2.0-aplha-5
         with:
           name: Build-StandaloneWindows 
           path: build/StandaloneWindows 
