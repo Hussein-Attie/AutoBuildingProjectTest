@@ -1,29 +1,19 @@
-name: Build project
-
-on: [push, pull_request]
-
+name: Acquire activation file
+on: [push]
 jobs:
-  buildForAllSupportedPlatforms:
-    name: Build for StandaloneWindows 
+  activation:
+    name: Request manual activation file <img draggable="false" role="img" class="emoji" alt="🔑" src="https://s0.wp.com/wp-content/mu-plugins/wpcom-smileys/twemoji/2/svg/1f511.svg">
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
     steps:
-      - uses: actions/checkout@v2.0-aplha-5
+      # Request manual activation file
+      - name: Request manual activation file
+        id: getManualLicenseFile
+        uses: webbertakken/unity-request-manual-activation-file@v1.1
         with:
-          fetch-depth: 0
-          lfs: true
-      - uses: actions/cache@v2.0-aplha-5
+          unityVersion: 2019.3.9f1
+      # Upload artifact (Unity_v20XX.X.XXXX.alf)
+      - name: Expose as artifact
+        uses: actions/upload-artifact@v1
         with:
-          path: Library
-          key: Library-StandaloneWindows 
-          restore-keys: Library-
-      - uses:  game-ci/unity-builder@v2.0-aplha-5
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-        with:
-          targetPlatform: StandaloneWindows 
-      - uses: actions/upload-artifact@v2.0-aplha-5
-        with:
-          name: Build-StandaloneWindows 
-          path: build/StandaloneWindows 
+          name: ${{ steps.getManualLicenseFile.outputs.filePath }}
+          path: ${{ steps.getManualLicenseFile.outputs.filePath }}
