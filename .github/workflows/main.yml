@@ -67,8 +67,8 @@
         with:
           target: build
           name: ${{ matrix.targetPlatform }}
-          credentials: ${{ secrets.DRIVE_CREDENTIALS }}
-          folder: ${{ secrets.DRIVE_FOLDER }} 
+          credentials: ${{ secrets.CREDENTIALS }}
+          folder: ${{ secrets.DRIVE_FILE_ID }} 
 # jobs:
 
 #   BuildWindows:
