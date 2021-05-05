@@ -61,13 +61,13 @@
           buildName: ${{ secrets.APP_NAME }}
 
       # Upload to Drive
-      - name: Upload build to Google Drive
-        uses: Jodebu/upload-to-drive@master
-        with:
-          target: build
-          name: ${{ matrix.targetPlatform }}
-          credentials: ${{ secrets.CREDENTIALS }}
-          folder: ${{ secrets.DRIVE_FILE_ID }} 
+#       - name: Upload build to Google Drive
+#         uses: Jodebu/upload-to-drive@master
+#         with:
+#           target: build
+#           name: ${{ matrix.targetPlatform }}
+#           credentials: ${{ secrets.CREDENTIALS }}
+#           folder: ${{ secrets.DRIVE_FILE_ID }} 
 # jobs:
 
 #   BuildWindows:
