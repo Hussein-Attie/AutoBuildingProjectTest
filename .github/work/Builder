@@ -1,4 +1,12 @@
-jobs:
+ name: Actions 
+
+ on:
+   pull_request: {}
+   push: { branches: [master] }
+ 
+ env:
+   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+ jobs:
   buildAndTestForSomePlatforms:
     name: Build for ${{ matrix.targetPlatform }} on version ${{ matrix.unityVersion }}
     runs-on: ubuntu-latest
