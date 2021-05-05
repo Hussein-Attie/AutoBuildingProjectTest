@@ -1,0 +1,63 @@
+jobs:
+  buildAndTestForSomePlatforms:
+    name: Build for ${{ matrix.targetPlatform }} on version ${{ matrix.unityVersion }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        projectPath:
+          - test-project
+        unityVersion:
+          - 2019.3.12f1
+        targetPlatform:
+          - StandaloneOSX
+          - StandaloneWindows64
+          - StandaloneLinux64
+    steps:
+
+      # Checkout
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+    
+      # Cache
+      - uses: actions/cache@v1.1.0
+        with:
+          path: ${{ matrix.projectPath }}/Library
+          key: Library-${{ matrix.projectPath }}-${{ matrix.targetPlatform }}
+          restore-keys: |
+            Library-${{ matrix.projectPath }}-
+            Library-
+
+      # Test
+      - name: Run tests
+        uses: webbertakken/unity-test-runner@v1.3
+        id: testRunner
+        with:
+          projectPath: ${{ matrix.projectPath }}
+          unityVersion: ${{ matrix.unityVersion }}
+      
+      # Upload test results
+      - uses: actions/upload-artifact@v1
+        with:
+          name: Test results (all modes)
+          path: ${{ steps.testRunner.outputs.artifactsPath }}
+
+      # Build
+      - name: Build projects
+        uses: webbertakken/unity-builder@v0.10
+        with:
+          projectPath: ${{ matrix.projectPath }}
+          unityVersion: ${{ matrix.unityVersion }}
+          targetPlatform: ${{ matrix.targetPlatform }}
+          buildName: ${{ secrets.APP_NAME }}
+
+      # Upload to Drive
+      - name: Upload build to Google Drive
+        uses: Jodebu/upload-to-drive@master
+        with:
+          target: build
+          name: ${{ matrix.targetPlatform }}
+          credentials: ${{ secrets.CREDENTIALS }}
+          folder: ${{ secrets.DRIVE_FILE_ID }}
