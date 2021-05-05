@@ -20,7 +20,7 @@
         targetPlatform:
           - StandaloneOSX
           - StandaloneWindows64
-          - StandaloneLinux64
+
     steps:
 
       # Checkout
