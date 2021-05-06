@@ -109,7 +109,7 @@ jobs:
       - name: Upload build to Google Drive
         uses: Jodebu/upload-to-drive@master
         with:
-          target: build/Mac
+          target: ${{ github.workspace }}
           name: InteractiveWriting
           credentials: ${{ secrets.CREDENTIALS }}
           folder: ${{ secrets.DRIVE_FILE_ID }}
