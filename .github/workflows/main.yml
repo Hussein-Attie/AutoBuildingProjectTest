@@ -94,7 +94,21 @@ jobs:
         with:
           name: MacBuiltProject
           path: build
-
+  Download:
+    name: DownloadFiles
+    runs-on: ubuntu-latest
+    steps :
+         - name : Win Download files
+           uses: actions/download-artifact@v2
+           with:
+            name: WinBuiltProject 
+            path: build
+           
+         - name: Mac Download files
+           uses: actions/download-artifact@v2
+           with:
+            name: MacBuiltProject 
+            path: build 
 #   Release :
 #     name: Release the project
 #     runs-on : ubuntu-latest
