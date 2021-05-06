@@ -97,6 +97,9 @@ jobs:
   Download:
     name: DownloadFiles
     runs-on: ubuntu-latest
+    needs:
+     - BuildMacOS
+     - BuildWindows
     steps :
          - name : Win Download files
            uses: actions/download-artifact@v2
