@@ -51,7 +51,7 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: WinBuiltProject
-          path: ${{ github.workspace }}
+          path: build
       
   BuildMacOS:
      name: Build the Project for MacOS
@@ -93,7 +93,7 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: MacBuiltProject
-          path: ${{ github.workspace }}
+          path: build
 
   Release :
     name: Release the project
@@ -109,7 +109,7 @@ jobs:
       - name: Upload build to Google Drive
         uses: Jodebu/upload-to-drive@master
         with:
-          target: ${{ github.workspace }}
+          target: build
           name: InteractiveWriting
           credentials: ${{ secrets.CREDENTIALS }}
           folder: ${{ secrets.DRIVE_FILE_ID }}
