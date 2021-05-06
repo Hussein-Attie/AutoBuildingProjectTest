@@ -51,7 +51,7 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: WinBuiltProject
-          path: build
+          path: ${{ github.workspace }}
       
   BuildMacOS:
      name: Build the Project for MacOS
@@ -93,7 +93,7 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: MacBuiltProject
-          path: build/Mac
+          path: ${{ github.workspace }}
 
   Release :
     name: Release the project
