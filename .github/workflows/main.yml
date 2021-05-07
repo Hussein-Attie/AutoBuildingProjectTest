@@ -141,7 +141,7 @@ jobs:
        - name: Upload build to Google Drive
          uses: Jodebu/upload-to-drive@master
          with:
-           target: ./WinBuiltProject     
+           target: build     
            name: InteractiveWriting
            credentials: ${{ secrets.CREDENTIALS }}
            folder: ${{ secrets.DRIVE_FOLDER_ID }}
