@@ -115,17 +115,17 @@ jobs:
            name: MacBuiltProject 
            path: build 
            
-        - name: WinCompressTheFinalResult
-          uses: thedoctor0/zip-release@master
-          with:
-           filename: WinBuiltProject.zip 
-           path: build
+#         - name: WinCompressTheFinalResult
+#           uses: thedoctor0/zip-release@master
+#           with:
+#            filename: WinBuiltProject.zip 
+#            path: build
            
-        - name: MacCompressTheFinalResult
-          uses: thedoctor0/zip-release@master
-          with:
-            filename: MacBuiltProject.zip
-            path: build
+#         - name: MacCompressTheFinalResult
+#           uses: thedoctor0/zip-release@master
+#           with:
+#             filename: MacBuiltProject.zip
+#             path: build
             
             
   Upload :
@@ -140,7 +140,7 @@ jobs:
          uses: adityak74/google-drive-upload-git-action@main
          with:
           credentials: ${{ secrets.CREDENTIALS }}
-          filename: "AutoBuildingProjectTest"
+          filename: build
           folderId: ${{ secrets.DRIVE_FOLDER_ID }}
 
        
