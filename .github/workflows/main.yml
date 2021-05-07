@@ -136,12 +136,19 @@ jobs:
        - BuildMacOS
        #- Download
       steps:
-       - name: Upload to gdrive
-         uses: adityak74/google-drive-upload-git-action@main
+       - name: Upload build to Google Drive
+         uses: Jodebu/upload-to-drive@master
          with:
-          credentials: ${{ secrets.CREDENTIALS }}
-          filename: ./WinBuiltProject
-          folderId: ${{ secrets.DRIVE_FOLDER_ID }}
+           target: ./WinBuiltProject     
+           name: InteractiveWriting
+           credentials: ${{ secrets.CREDENTIALS }}
+           folder: ${{ secrets.DRIVE_FOLDER_ID }}
+#        - name: Upload to gdrive
+#          uses: adityak74/google-drive-upload-git-action@main
+#          with:
+#           credentials: ${{ secrets.CREDENTIALS }}
+#           filename: ./WinBuiltProject
+#           folderId: ${{ secrets.DRIVE_FOLDER_ID }}
 
        
 # name: Actions 
