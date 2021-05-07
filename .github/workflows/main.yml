@@ -140,7 +140,7 @@ jobs:
          uses: adityak74/google-drive-upload-git-action@main
          with:
           credentials: ${{ secrets.CREDENTIALS }}
-          filename: "WinBuiltProject.zip"
+          filename: "AutoBuildingProjectTest"
           folderId: ${{ secrets.DRIVE_FOLDER_ID }}
 
        
