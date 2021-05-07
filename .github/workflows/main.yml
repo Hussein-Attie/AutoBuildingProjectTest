@@ -47,10 +47,10 @@ jobs:
 
          
       # Output for win
-      - uses: actions/upload-artifact@v1
-        with:
-          name: WinBuiltProject
-          path: build
+   #   - uses: actions/upload-artifact@v1
+    #    with:
+     #     name: WinBuiltProject
+      #    path: build
       
   BuildMacOS:
      name: Build the Project for MacOS
@@ -89,31 +89,31 @@ jobs:
        
  
       # Output for Mac
-      - uses: actions/upload-artifact@v1
-        with:
-          name: MacBuiltProject
-          path: build
+      #- uses: actions/upload-artifact@v1
+       # with:
+        #  name: MacBuiltProject
+         # path: build
           
-  Download:
+  #Download:
      
-       name: Download Files
-       runs-on : ubuntu-latest
-       needs : 
-       - BuildWindows        
-       - BuildMacOS
+#       name: Download Files
+#       runs-on : ubuntu-latest
+#       needs : 
+#        - BuildWindows        
+#        - BuildMacOS
     
-       steps:
-        - name: Win Download files
-          uses: actions/download-artifact@v2
-          with:
-           name: WinBuiltProject 
-           path: build
+#        steps:
+#         - name: Win Download files
+#           uses: actions/download-artifact@v2
+#           with:
+#            name: WinBuiltProject 
+#            path: build
            
-        - name: Mac Download files
-          uses: actions/download-artifact@v2
-          with:
-           name: MacBuiltProject 
-           path: build 
+#         - name: Mac Download files
+#           uses: actions/download-artifact@v2
+#           with:
+#            name: MacBuiltProject 
+#            path: build 
            
 #         - name: WinCompressTheFinalResult
 #           uses: thedoctor0/zip-release@master
@@ -134,7 +134,7 @@ jobs:
       needs : 
        - BuildWindows        
        - BuildMacOS
-       - Download
+       #- Download
       steps:
        - name: Upload to gdrive
          uses: adityak74/google-drive-upload-git-action@main
