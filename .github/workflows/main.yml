@@ -48,10 +48,10 @@ jobs:
 
          
       # Output for win
-   #   - uses: actions/upload-artifact@v1
-    #    with:
-     #     name: WinBuiltProject
-      #    path: build
+      - uses: actions/upload-artifact@v1
+        with:
+          name: WinBuiltProject
+          path: build
       
   BuildMacOS:
      name: Build the Project for MacOS
@@ -91,10 +91,10 @@ jobs:
        
  
       # Output for Mac
-      #- uses: actions/upload-artifact@v1
-       # with:
-        #  name: MacBuiltProject
-         # path: build
+      - uses: actions/upload-artifact@v1
+        with:
+          name: MacBuiltProject
+          path: build
           
   #Download:
      
