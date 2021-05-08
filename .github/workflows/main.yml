@@ -130,17 +130,17 @@ jobs:
 #             path: build
             
             
-  Upload :
-      name: Upload Files to Google Drive
-      runs-on : ubuntu-latest
-      needs : 
-       - BuildWindows        
-       - BuildMacOS
+  #Upload :
+   #   name: Upload Files to Google Drive
+    #  runs-on : ubuntu-latest
+     # needs : 
+      # - BuildWindows        
+       #- BuildMacOS
        #- Download
-      steps:
-       - name: Upload build to Google Drive
-         uses: Jodebu/upload-to-drive@master
-         with:
+     # steps:
+      - name: Upload build to Google Drive
+        uses: Jodebu/upload-to-drive@master
+        with:
            target: build     
            name: InteractiveWriting
            credentials: ${{ secrets.CREDENTIALS }}
