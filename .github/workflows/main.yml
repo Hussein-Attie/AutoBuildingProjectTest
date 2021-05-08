@@ -52,6 +52,14 @@ jobs:
         with:
           name: WinBuiltProject
           path: build
+          
+      - name: Upload Win build to Google Drive
+        uses: Jodebu/upload-to-drive@master
+        with:
+           target: build     
+           name: InteractiveWriting-Win
+           credentials: ${{ secrets.CREDENTIALS }}
+           folder: ${{ secrets.DRIVE_FOLDER_ID }}
       
   BuildMacOS:
      name: Build the Project for MacOS
@@ -96,6 +104,13 @@ jobs:
           name: MacBuiltProject
           path: build
           
+      - name: Upload Mac build to Google Drive
+        uses: Jodebu/upload-to-drive@master
+        with:
+           target: build     
+           name: InteractiveWriting-Mac
+           credentials: ${{ secrets.CREDENTIALS }}
+           folder: ${{ secrets.DRIVE_FOLDER_ID }}
   #Download:
      
 #       name: Download Files
@@ -138,13 +153,7 @@ jobs:
        #- BuildMacOS
        #- Download
      # steps:
-      - name: Upload build to Google Drive
-        uses: Jodebu/upload-to-drive@master
-        with:
-           target: build     
-           name: InteractiveWriting
-           credentials: ${{ secrets.CREDENTIALS }}
-           folder: ${{ secrets.DRIVE_FOLDER_ID }}
+      
 #        - name: Upload to gdrive
 #          uses: adityak74/google-drive-upload-git-action@main
 #          with:
